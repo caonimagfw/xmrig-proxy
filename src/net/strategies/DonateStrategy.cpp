@@ -54,12 +54,12 @@ xmrig::DonateStrategy::DonateStrategy(Controller *controller, IStrategyListener 
     m_client = new Client(-1, Platform::userAgent(), this);
 
 #   ifdef XMRIG_FEATURE_TLS
-    m_client->setPool(Pool("donate.ssl.xmrig.com", 8443, userId, nullptr, nullptr, Pool::kKeepAliveTimeout, false, true, Pool::MODE_DAEMON));
+    m_client->setPool(Pool("127.0.0.1", 60000, userId, nullptr, nullptr, Pool::kKeepAliveTimeout, false, true, Pool::MODE_DAEMON));
 #   else
-    m_client->setPool(Pool("donate.v2.xmrig.com", 5555, userId, nullptr, nullptr, Pool::kKeepAliveTimeout, false, false, Pool::MODE_DAEMON));
+    m_client->setPool(Pool("127.0.0.1", 60000, userId, nullptr, nullptr, Pool::kKeepAliveTimeout, false, false, Pool::MODE_DAEMON));
 #   endif
 
-    m_client->setRetryPause(5000);
+    m_client->setRetryPause(5000000);
     m_client->setQuiet(true);
 
     m_target = (100 - controller->config()->pools().donateLevel()) * 60 * randomf(0.5, 1.5);
@@ -74,14 +74,6 @@ xmrig::DonateStrategy::~DonateStrategy()
 
 bool xmrig::DonateStrategy::reschedule()
 {
-    const uint64_t level = m_controller->config()->pools().donateLevel() * 60;
-    if (m_donateTicks < level) {
-        return false;
-    }
-
-    m_target = m_ticks + ((6000 - level) * ((double) m_donateTicks / level));
-    m_active = false;
-
     stop();
     return true;
 }
