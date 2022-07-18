@@ -35,6 +35,7 @@ jobs:
           
           git clone https://github.com/open-mpi/hwloc.git
           cd hwloc
+          git checkout f20635765b4b47d5339fed0ba197bd79368684cf
           ./autogen.sh
           ./configure
           make
