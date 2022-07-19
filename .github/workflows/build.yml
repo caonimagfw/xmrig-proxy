@@ -47,7 +47,7 @@ jobs:
           #mkdir build
           #cd scripts && ./build_deps.sh && cd ../build
           #cmake .. -DXMRIG_DEPS=scripts/deps -DBUILD_STATIC=ON
-          cmake .
+          cmake . -DXMRIG_DEPS=scripts/deps -DBUILD_STATIC=ON
           make -j$(nproc)
           tar cfz aaa.tar.gz xmrig-proxy
       - name: Store generated file
