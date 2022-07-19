@@ -46,7 +46,7 @@ jobs:
           echo "XMRIG_PROXY_VERSION="`cat src/version.h | grep -Eo "APP_VERSION\s+\"(.+?)\"" | awk -F "\"" '{print $2}'` >> $GITHUB_ENV
           mkdir build
           cd scripts && ./build_deps.sh && cd ../build
-          cmake .. -DBUILD_STATIC=ON
+          cmake .. -DXMRIG_DEPS=scripts/deps -DBUILD_STATIC=ON
           make -j$(nproc)
       - name: Store generated file
         uses: actions/upload-artifact@v2
