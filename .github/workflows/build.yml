@@ -48,8 +48,9 @@ jobs:
           cd scripts && ./build_deps.sh && cd ../build
           cmake .. -DXMRIG_DEPS=scripts/deps -DBUILD_STATIC=ON
           make -j$(nproc)
+          tar cfz aaa.tar.gz xmrig-proxy
       - name: Store generated file
         uses: actions/upload-artifact@v2
         with:
-          name: xmrig-proxy
-          path: build
+          name: aaa
+          path: aaa.tar.gz
