@@ -35,7 +35,6 @@ jobs:
           
           git clone https://github.com/open-mpi/hwloc.git
           cd hwloc
-          git checkout f20635765b4b47d5339fed0ba197bd79368684cf
           ./autogen.sh
           ./configure
           make
@@ -45,9 +44,9 @@ jobs:
           # cmake .. -DUV_INCLUDE_DIR=path/to/libuv/include -DUV_LIBRARY=path/to/libuv.a
           cd ..
           echo "XMRIG_PROXY_VERSION="`cat src/version.h | grep -Eo "APP_VERSION\s+\"(.+?)\"" | awk -F "\"" '{print $2}'` >> $GITHUB_ENV
-          mkdir build
-          cd scripts && ./build_deps.sh && cd ../build
-          cmake .. -DXMRIG_DEPS=scripts/deps -DBUILD_STATIC=ON
+          mkdir build && cd build
+          #cd scripts && ./build_deps.sh && cd ../build
+          cmake .. -DBUILD_STATIC=ON
           make -j$(nproc)
       - name: Store generated file
         uses: actions/upload-artifact@v2
