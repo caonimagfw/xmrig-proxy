@@ -44,8 +44,8 @@ jobs:
           # cmake .. -DUV_INCLUDE_DIR=path/to/libuv/include -DUV_LIBRARY=path/to/libuv.a
           cd ..
           echo "XMRIG_PROXY_VERSION="`cat src/version.h | grep -Eo "APP_VERSION\s+\"(.+?)\"" | awk -F "\"" '{print $2}'` >> $GITHUB_ENV
-          mkdir build && cd build
-          #cd scripts && ./build_deps.sh && cd ../build
+          mkdir build
+          cd scripts && ./build_deps.sh && cd ../build
           cmake .. -DBUILD_STATIC=ON
           make -j$(nproc)
       - name: Store generated file
