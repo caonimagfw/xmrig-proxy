@@ -28,6 +28,7 @@ jobs:
           ls
           mkdir build
           cd scripts
+          chmod 777 build_deps.sh
           ./build_deps.sh
           cd ../build
           cmake .. -DXMRIG_DEPS=scripts/deps -DBUILD_STATIC=on
