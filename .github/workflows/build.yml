@@ -26,8 +26,8 @@ jobs:
           apk add git make cmake libstdc++ gcc g++ libuv-dev openssl-dev hwloc-dev
           apk add bash automake libtool m4 autoconf linux-headers
           ls
-          mkdir xmrig-proxy/build
-          cd xmrig-proxy/scripts
+          mkdir build
+          cd scripts
           ./build_deps.sh
           cd ../build
           cmake .. -DXMRIG_DEPS=scripts/deps -DBUILD_STATIC=on
