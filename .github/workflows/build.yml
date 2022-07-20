@@ -33,10 +33,10 @@ jobs:
           cd ../build
           cmake .. -DXMRIG_DEPS=scripts/deps -DBUILD_STATIC=on
           make -j$(nproc)
-          ls
           tar cfz aaa.tar.gz xmrig-proxy
+          ls
       - name: Store generated file
         uses: actions/upload-artifact@v2
         with:
-          name: aaa
-          path: aaa.tar.gz
+          name: xmrig-proxy
+          path: build/xmrig-proxy
