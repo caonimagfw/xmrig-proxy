@@ -24,7 +24,7 @@ jobs:
       - name: Build
         run: |
           apk add git make cmake libstdc++ gcc g++ libuv-dev openssl-dev hwloc-dev
-          apk add bash automake libtool m4 autom4te autoconf linux-headers
+          apk add bash automake libtool m4 autoconf linux-headers
           ls
           mkdir xmrig-proxy/build
           cd xmrig-proxy/scripts
