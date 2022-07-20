@@ -1,0 +1,41 @@
+name: Build XMRig Proxy
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Buid Actions Tag'
+
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+    steps:
+      - name: Checkout Repository master branch
+        uses: actions/checkout@v2
+        with:
+          repository: caonimagfw/xmrig-proxy
+
+      - name: Build
+        run: |
+          sudo apt install git build-essential cmake libuv1-dev uuid-dev libmicrohttpd-dev libssl-dev
+          #apk add git make cmake libstdc++ gcc g++ libuv-dev openssl-dev hwloc-dev
+          #apk add bash automake libtool m4 autoconf linux-headers
+          ls
+          mkdir build
+          cd scripts
+          chmod 777 *.sh
+          ./build_deps.sh
+          cd ../build
+          cmake .. -DXMRIG_DEPS=scripts/deps -DBUILD_STATIC=on
+          make -j$(nproc)
+          tar cfz aaa.tar.gz xmrig-proxy
+          ls
+      - name: Store generated file
+        uses: actions/upload-artifact@v2
+        with:
+          name: xmrig-proxy
+          path: build/xmrig-proxy
