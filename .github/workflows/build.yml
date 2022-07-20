@@ -24,8 +24,17 @@ jobs:
       - name: Build
         run: |
           #apk add git make cmake libstdc++ gcc g++ automake libtool autoconf linux-headers bash openssl-dev
-          apk add git make cmake libstdc++ gcc g++ automake libtool autoconf linux-headers bash openssl-devbuild-essential libuv1-dev uuid-dev libmicrohttpd-dev libssl-dev
-         
+          apk add git make cmake libstdc++ gcc g++ automake libtool autoconf linux-headers bash openssl-dev
+          apk add uuid-dev libmicrohttpd-dev 
+          
+          git clone https://github.com/libuv/libuv.git
+          cd libuv
+          ./autogen.sh
+          ./configure
+          make
+          make install
+          cd ..
+          
           mkdir xmrig-proxy/build
           cd xmrig-proxy/build
 
