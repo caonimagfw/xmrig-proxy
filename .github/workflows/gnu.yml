@@ -1,4 +1,4 @@
-name: Build XMRig Proxy （GNU)
+name: Build XMRig Proxy (GNU)
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository master branch
         uses: actions/checkout@v2
