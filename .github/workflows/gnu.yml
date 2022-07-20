@@ -1,4 +1,4 @@
-name: Build XMRig Proxy
+name: Build XMRig Proxy （GNU)
 
 on:
   workflow_dispatch:
