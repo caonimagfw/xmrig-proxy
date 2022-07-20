@@ -35,8 +35,8 @@ jobs:
           make install
           cd ..
           
-          mkdir xmrig-proxy/build
-          cd xmrig-proxy/build
+          mkdir build
+          cd build
 
           cmake .. -DCMAKE_BUILD_TYPE=Release -DUV_LIBRARY=/usr/lib/x86_64-linux-gnu/libuv.a
           make -j$(nproc)
